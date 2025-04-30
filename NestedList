@@ -1,0 +1,28 @@
+if __name__ == '__main__':
+    scoreList = []
+    lowList = []
+
+    #input, structured (X, name, score) x is # of names and scores coming
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        scoreList.append([name, score])
+    scoreList = sorted(scoreList, key=lambda x: x[1])
+    
+    #finding the second lowest value
+    for x in scoreList:
+        if x[1] != scoreList[0][1]:
+            lowList.append(x)
+            break
+
+
+    #finding names that share the same score
+    for x in scoreList:
+        if x[1] == lowList[0][1]:
+            lowList.append(x)
+
+    #sorting the list
+    lowList = sorted(lowList, key=lambda x: x[0])
+    lowList = list(set(tuple(x) for x in lowList))
+    for x in lowList:
+        print(x[0])
